@@ -15,9 +15,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Vector2 playerMovement = MoveAction.ReadValue<Vector2>();
-        Debug.Log(playerMovement);
+        //Debug.Log(playerMovement);
 
-        Vector2 playerPosition = (Vector2)transform.position + playerMovement * 0.05f;
+        Vector2 playerPosition = (Vector2)transform.position + playerMovement * 5.0f * Time.deltaTime;
 
         this.transform.position = playerPosition;
     }
