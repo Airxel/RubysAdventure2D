@@ -7,18 +7,38 @@ public class PlayerController : MonoBehaviour
 {
     public InputAction MoveAction;
 
+    private Rigidbody2D playerRb;
+    private Vector2 playerMovement;
+
+    public float speed = 5.0f;
+    public int maxHealth = 5;
+    private int currentHealth = 1;
+
     private void Start()
     {
         MoveAction.Enable();
+
+        playerRb = GetComponent<Rigidbody2D>();
+
+        //currentHealth = maxHealth;
     }
 
     private void Update()
     {
-        Vector2 playerMovement = MoveAction.ReadValue<Vector2>();
+        playerMovement = MoveAction.ReadValue<Vector2>();
         //Debug.Log(playerMovement);
+    }
 
-        Vector2 playerPosition = (Vector2)transform.position + playerMovement * 5.0f * Time.deltaTime;
+    private void FixedUpdate()
+    {
+        Vector2 playerPosition = (Vector2)playerRb.position + playerMovement * speed * Time.deltaTime;
 
-        this.transform.position = playerPosition;
+        playerRb.MovePosition(playerPosition);
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        currentHealth = Mathf.Clamp(currentHealth +  amount, 0, maxHealth);
+        Debug.Log(currentHealth + "/" + maxHealth);
     }
 }
