@@ -9,10 +9,20 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D playerRb;
     private Vector2 playerMovement;
-
     public float speed = 5.0f;
+
     public int maxHealth = 5;
-    private int currentHealth = 1;
+
+    public int health { get { return currentHealth; } }
+    private int currentHealth;
+
+    public float timeInvincible = 2.0f;
+    private bool isInvincible;
+    private float damageCooldown;
+
+    public float timeHealing = 5.0f;
+    private bool isHealing;
+    private float healingCooldown;
 
     private void Start()
     {
@@ -20,13 +30,32 @@ public class PlayerController : MonoBehaviour
 
         playerRb = GetComponent<Rigidbody2D>();
 
-        //currentHealth = maxHealth;
+        currentHealth = maxHealth;
     }
 
     private void Update()
     {
         playerMovement = MoveAction.ReadValue<Vector2>();
-        //Debug.Log(playerMovement);
+
+        if (isInvincible)
+        {
+            damageCooldown -= Time.deltaTime;
+
+            if (damageCooldown < 0)
+            {
+                isInvincible = false;
+            }
+        }
+
+        if (isHealing)
+        {
+            healingCooldown -= Time.deltaTime;
+
+            if (healingCooldown < 0)
+            {
+                isHealing = false;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -38,6 +67,27 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeHealth(int amount)
     {
+        if (amount < 0)
+        {
+            if (isInvincible)
+            {
+                return;
+            }
+
+            isInvincible = true;
+            damageCooldown = timeInvincible;
+        }
+
+        if (amount > 0)
+        {
+            if (isHealing)
+            {
+                return;
+            }
+
+            isHealing = true;
+            healingCooldown = timeHealing;
+        }
         currentHealth = Mathf.Clamp(currentHealth +  amount, 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
     }
