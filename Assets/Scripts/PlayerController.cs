@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
     private bool isHealing;
     private float healingCooldown;
 
+    public GameObject projectilePrefab;
+    public float projectileForce = 300f;
+
     private void Start()
     {
         MoveAction.Enable();
@@ -76,6 +79,11 @@ public class PlayerController : MonoBehaviour
                 isHealing = false;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Launch();
+        }
     }
 
     private void FixedUpdate()
@@ -114,5 +122,15 @@ public class PlayerController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth +  amount, 0, maxHealth);
         
         UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
+    }
+
+    private void Launch()
+    {
+        GameObject newProjectile = Instantiate(projectilePrefab, playerRb.position + Vector2.up, Quaternion.identity);
+
+        Projectile projectile = newProjectile.GetComponent<Projectile>();
+        projectile.Launch(moveDirection, projectileForce);
+
+        animator.SetTrigger("Launch");
     }
 }
