@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    Animator animator;
+    Vector2 moveDirection = new Vector2(1, 0);
+
     // Variables referentes al movimiento del jugador
     public InputAction MoveAction;
 
@@ -32,6 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         MoveAction.Enable();
 
+        animator = GetComponent<Animator>();
+
         playerRb = GetComponent<Rigidbody2D>();
 
         currentHealth = maxHealth;
@@ -40,6 +45,17 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         playerMovement = MoveAction.ReadValue<Vector2>();
+
+        // Si el jugador se está moviendo
+        if(!Mathf.Approximately(playerMovement.x, 0.0f) || !Mathf.Approximately(playerMovement.y, 0.0f))
+        {
+            moveDirection.Set(playerMovement.x, playerMovement.y);
+            moveDirection.Normalize();
+        }
+
+        animator.SetFloat("Look X", moveDirection.x);
+        animator.SetFloat("Look Y", moveDirection.y);
+        animator.SetFloat("Speed", playerMovement.magnitude);
 
         if (isInvincible)
         {
@@ -80,6 +96,8 @@ public class PlayerController : MonoBehaviour
 
             isInvincible = true;
             damageCooldown = timeInvincible;
+
+            animator.SetTrigger("Hit");
         }
 
         if (amount > 0)
@@ -92,6 +110,7 @@ public class PlayerController : MonoBehaviour
             isHealing = true;
             healingCooldown = timeHealing;
         }
+
         currentHealth = Mathf.Clamp(currentHealth +  amount, 0, maxHealth);
         
         UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);

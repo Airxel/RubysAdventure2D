@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 325376369171023248}
   - component: {fileID: -1717247499740559750}
   - component: {fileID: 3307508764571784493}
+  - component: {fileID: 2574340328455974529}
   m_Layer: 0
   m_Name: Ducko
   m_TagString: Untagged
@@ -230,6 +231,8 @@ MonoBehaviour:
     m_Flags: 0
   speed: 5
   maxHealth: 5
+  timeInvincible: 2
+  timeHealing: 5
 --- !u!50 &-1717247499740559750
 Rigidbody2D:
   serializedVersion: 4
@@ -292,3 +295,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0.01810775, y: 0.29029942}
   m_Size: {x: 0.87388945, y: 0.62668335}
   m_Direction: 1
+--- !u!95 &2574340328455974529
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554300302549857128}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 34d36e1bead33a942930d6f3d41aa8fa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
