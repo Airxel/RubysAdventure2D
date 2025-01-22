@@ -18,6 +18,8 @@ public class EnemyController : MonoBehaviour
 
     public int enemyDamage = 1;
 
+    private bool broken = true;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -39,6 +41,11 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!broken)
+        {
+            return;
+        }
+
         Vector2 enemyPosition = enemyRb.position;
 
         if (vertical)
@@ -99,5 +106,13 @@ public class EnemyController : MonoBehaviour
 
             enemyMovementTimer = enemyVMovementTime;
         }
+    }
+
+    public void Fix()
+    {
+        broken = false;
+        enemyRb.simulated = false;
+
+        animator.SetTrigger("Fixed");
     }
 }

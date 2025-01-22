@@ -12,6 +12,14 @@ public class Projectile : MonoBehaviour
         projectileRb = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        if (transform.position.magnitude > 100.0f)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
         
@@ -24,7 +32,18 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Projectile collision with " + other.gameObject);
+        EnemyController enemy = other.GetComponent<EnemyController>();
+
+        if (enemy != null)
+        {
+            enemy.Fix();
+        }
+
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         Destroy(gameObject);
     }
 }

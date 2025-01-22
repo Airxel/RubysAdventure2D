@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveDirection = new Vector2(1, 0);
 
     // Variables referentes al movimiento del jugador
-    public InputAction MoveAction;
+    public InputAction moveAction;
 
     private Rigidbody2D playerRb;
     private Vector2 playerMovement;
@@ -34,9 +34,13 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab;
     public float projectileForce = 300f;
 
+    public InputAction talkAction;
+
     private void Start()
     {
-        MoveAction.Enable();
+        moveAction.Enable();
+
+        talkAction.Enable();
 
         animator = GetComponent<Animator>();
 
@@ -47,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        playerMovement = MoveAction.ReadValue<Vector2>();
+        playerMovement = moveAction.ReadValue<Vector2>();
 
         // Si el jugador se está moviendo
         if(!Mathf.Approximately(playerMovement.x, 0.0f) || !Mathf.Approximately(playerMovement.y, 0.0f))
@@ -83,6 +87,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             Launch();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            FindFriend();
         }
     }
 
@@ -132,5 +141,15 @@ public class PlayerController : MonoBehaviour
         projectile.Launch(moveDirection, projectileForce);
 
         animator.SetTrigger("Launch");
+    }
+
+    private void FindFriend()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(playerRb.position + Vector2.up, moveDirection, 1.5f, LayerMask.GetMask("NPC"));
+
+        if (hit.collider != null)
+        {
+            Debug.Log("Raycast has hit the object " + hit.collider.gameObject);
+        }
     }
 }
