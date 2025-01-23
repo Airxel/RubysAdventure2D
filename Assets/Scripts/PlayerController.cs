@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     public int npcTalked = 0;
 
-    public BoxCollider2D fogCollider;
+    public BoxCollider2D fog1Collider, fog2Collider;
 
     private void Start()
     {
@@ -108,11 +108,6 @@ public class PlayerController : MonoBehaviour
         if (talkAction.triggered)
         {
             FindFriend();
-        }
-
-        if (npcTalked >= 2)
-        {
-            fogCollider.enabled = false;
         }
     }
 
@@ -190,8 +185,26 @@ public class PlayerController : MonoBehaviour
                     npc.talkedTo = true;
 
                     npcTalked += 1;
+
+                    if (npcTalked >= 2)
+                    {
+                        fog1Collider.enabled = false;
+                        fog2Collider.enabled = false;
+                    }
                 }
             }  
+        }
+
+        RaycastHit2D hit2 = Physics2D.Raycast(playerRb.position + Vector2.up, moveDirection, 1.5f, LayerMask.GetMask("Environment"));
+
+        if (hit2.collider != null)
+        {
+            NonPlayerCharacter fog = hit2.collider.GetComponent<NonPlayerCharacter>();
+
+            if (fog != null)
+            {
+                UIHandler.instance.DisplayDialogue(fog.dialogueText);
+            }
         }
     }
 

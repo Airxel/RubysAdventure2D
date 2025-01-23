@@ -12365,6 +12365,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fog (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 577939123056720732, guid: e8823e7b65b242242a869cf256142ace, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 3581197474014676888, guid: e8823e7b65b242242a869cf256142ace, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.25
@@ -12437,6 +12441,11 @@ PrefabInstance:
 --- !u!4 &624956611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3581197474014676888, guid: e8823e7b65b242242a869cf256142ace, type: 3}
+  m_PrefabInstance: {fileID: 624956610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &624956612 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: -3814836528216555459, guid: e8823e7b65b242242a869cf256142ace, type: 3}
   m_PrefabInstance: {fileID: 624956610}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &628071147
@@ -13988,6 +13997,11 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 7987402559988496477, guid: 014c18929496bd4439b7845931e36caa, type: 3}
   m_PrefabInstance: {fileID: 1622924750}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1239848942 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 577939123056720732, guid: e8823e7b65b242242a869cf256142ace, type: 3}
+  m_PrefabInstance: {fileID: 1465879502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1277370113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14905,6 +14919,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fog
       objectReference: {fileID: 0}
+    - target: {fileID: 577939123056720732, guid: e8823e7b65b242242a869cf256142ace, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 3581197474014676888, guid: e8823e7b65b242242a869cf256142ace, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.5
@@ -14972,13 +14990,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 577939123056720732, guid: e8823e7b65b242242a869cf256142ace, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1465879506}
   m_SourcePrefab: {fileID: 100100000, guid: e8823e7b65b242242a869cf256142ace, type: 3}
 --- !u!4 &1465879503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3581197474014676888, guid: e8823e7b65b242242a869cf256142ace, type: 3}
   m_PrefabInstance: {fileID: 1465879502}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &1465879504 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: -3814836528216555459, guid: e8823e7b65b242242a869cf256142ace, type: 3}
+  m_PrefabInstance: {fileID: 1465879502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1465879506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239848942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 747c60046fd041249b4e79455ba4d01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: I think I should talk to both my neighbourgs first...
+  talkedTo: 0
 --- !u!1 &1505254960
 GameObject:
   m_ObjectHideFlags: 0
@@ -76053,6 +76093,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 441132044}
     m_Modifications:
+    - target: {fileID: 325376369171023248, guid: 83c15a96e867bab45bc405d918151f84, type: 3}
+      propertyPath: fog1Collider
+      value: 
+      objectReference: {fileID: 1465879504}
+    - target: {fileID: 325376369171023248, guid: 83c15a96e867bab45bc405d918151f84, type: 3}
+      propertyPath: fog2Collider
+      value: 
+      objectReference: {fileID: 624956612}
     - target: {fileID: 558152348520434279, guid: 83c15a96e867bab45bc405d918151f84, type: 3}
       propertyPath: m_LocalPosition.x
       value: -26.01
@@ -76169,8 +76217,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194332024760250579, guid: 02e1d41fe49d9474982430bb25c36bee, type: 3}
       propertyPath: dialogueText
-      value: 'It seems like our friend here has finally lost it and released what
-        he calls: "The Great Evolution". We probably should fix it.'
+      value: The madman did it, he released the robots. They've set up traps at the
+        valley entrance, where I'm guessing they are. Ducko, I need you to check
+        on him and find a way to fix this mess. If you get hurt you can always came
+        back here, you already know this plan can heal your wounds.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

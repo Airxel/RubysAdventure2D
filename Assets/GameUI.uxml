@@ -6,5 +6,5 @@
         </ui:VisualElement>
         <ui:VisualElement name="CharacterPortrait" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Art/Ducko/UI/CharacterPortrait.png?fileID=21300000&amp;guid=0332b35b8fe3cf8458eb0558889493d1&amp;type=3#CharacterPortrait&quot;); -unity-background-scale-mode: scale-to-fit; position: absolute; height: 244px; width: 378px; top: -20px; left: -60px;" />
     </ui:VisualElement>
-    <ui:Instance template="NPCDialogue" name="NPCDialogue" style="position: absolute; left: 10%; top: 80%; right: 10%; bottom: 2.5%;" />
+    <ui:Instance template="NPCDialogue" name="NPCDialogue" style="position: absolute; left: 10%; top: 76%; right: 10%; bottom: 2.5%;" />
 </ui:UXML>
