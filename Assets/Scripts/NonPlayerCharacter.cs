@@ -5,4 +5,6 @@ using UnityEngine;
 public class NonPlayerCharacter : MonoBehaviour
 {
     public string dialogueText;
+
+    public bool talkedTo;
 }

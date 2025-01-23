@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     private AudioSource audioSource;
+
+    public AudioClip playerHitClip, playerShootClip;
 
     private Animator animator;
     Vector2 moveDirection = new Vector2(1, 0);
@@ -40,6 +43,12 @@ public class PlayerController : MonoBehaviour
 
     public InputAction talkAction;
 
+    public ParticleSystem playerHitEffect;
+
+    public int npcTalked = 0;
+
+    public BoxCollider2D fogCollider;
+
     private void Start()
     {
         moveAction.Enable();
@@ -64,6 +73,7 @@ public class PlayerController : MonoBehaviour
         {
             moveDirection.Set(playerMovement.x, playerMovement.y);
             moveDirection.Normalize();
+            audioSource.Play();
         }
 
         animator.SetFloat("Look X", moveDirection.x);
@@ -99,6 +109,11 @@ public class PlayerController : MonoBehaviour
         {
             FindFriend();
         }
+
+        if (npcTalked >= 2)
+        {
+            fogCollider.enabled = false;
+        }
     }
 
     private void FixedUpdate()
@@ -121,6 +136,9 @@ public class PlayerController : MonoBehaviour
             damageCooldown = timeInvincible;
 
             animator.SetTrigger("Hit");
+            PlaySound(playerHitClip);
+
+            Instantiate(playerHitEffect, transform.position, Quaternion.identity);
         }
 
         if (amount > 0)
@@ -136,6 +154,11 @@ public class PlayerController : MonoBehaviour
 
         currentHealth = Mathf.Clamp(currentHealth +  amount, 0, maxHealth);
         
+        if (currentHealth <= 0)
+        {
+            SceneManager.LoadScene("MainScene");
+        }
+
         UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
     }
 
@@ -147,6 +170,7 @@ public class PlayerController : MonoBehaviour
         projectile.Launch(moveDirection, projectileForce);
 
         animator.SetTrigger("Launch");
+        PlaySound(playerShootClip);
     }
 
     private void FindFriend()
@@ -160,7 +184,14 @@ public class PlayerController : MonoBehaviour
             if (npc != null)
             {
                 UIHandler.instance.DisplayDialogue(npc.dialogueText);
-            }
+
+                if (!npc.talkedTo)
+                {
+                    npc.talkedTo = true;
+
+                    npcTalked += 1;
+                }
+            }  
         }
     }
 

@@ -101,6 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f49e0b5b0304ca48ab8d32c3aad37fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHitClip: {fileID: 8300000, guid: c7d3a91ac32abbe47a8931a8ffc37bc6, type: 3}
+  playerShootClip: {fileID: 8300000, guid: c87de0cae68cdbb409eec8ba23a860d0, type: 3}
   moveAction:
     m_Name: Move
     m_Type: 0
@@ -286,6 +288,9 @@ MonoBehaviour:
       m_Action: Talk
       m_Flags: 0
     m_Flags: 0
+  playerHitEffect: {fileID: 6183003862219797125, guid: 28f8afc804b06af4f8448f60aa2396bf, type: 3}
+  npcTalked: 0
+  fogCollider: {fileID: -3814836528216555459, guid: e8823e7b65b242242a869cf256142ace, type: 3}
 --- !u!50 &-1717247499740559750
 Rigidbody2D:
   serializedVersion: 4
@@ -380,7 +385,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -6,6 +6,8 @@ public class EnemyController : MonoBehaviour
 {
     private AudioSource audioSource;
 
+    public AudioClip enemyFixedClip;
+
     private Animator animator;
 
     private Rigidbody2D enemyRb;
@@ -21,6 +23,8 @@ public class EnemyController : MonoBehaviour
     public int enemyDamage = 1;
 
     private bool broken = true;
+
+    public ParticleSystem smokeEffect;
 
     private void Start()
     {
@@ -119,5 +123,7 @@ public class EnemyController : MonoBehaviour
 
         audioSource.Stop();
         animator.SetTrigger("Fixed");
+        audioSource.PlayOneShot(enemyFixedClip);
+        smokeEffect.Stop();
     }
 }
