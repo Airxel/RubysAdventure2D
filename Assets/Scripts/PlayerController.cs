@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
             
             if (npc != null)
             {
-                UIHandler.instance.DisplayDialogue(npc.dialogueText);
+                UIHandler.instance.DisplayDialogue(npc.dialogueText, "NPC");
                 UIHandler.instance.DisplayTime(npc.displayTime);
 
                 if (!npc.talkedTo)
@@ -214,15 +214,42 @@ public class PlayerController : MonoBehaviour
             }  
         }
 
-        RaycastHit2D hit2 = Physics2D.Raycast(playerRb.position + Vector2.up, moveDirection, 1.5f, LayerMask.GetMask("Environment"));
+        RaycastHit2D hit2 = Physics2D.Raycast(playerRb.position + Vector2.up, moveDirection, 1.5f, LayerMask.GetMask("NPC2"));
 
         if (hit2.collider != null)
         {
-            NonPlayerCharacter fog = hit2.collider.GetComponent<NonPlayerCharacter>();
+            NonPlayerCharacter npc = hit2.collider.GetComponent<NonPlayerCharacter>();
+
+            if (npc != null)
+            {
+                UIHandler.instance.DisplayDialogue(npc.dialogueText, "NPC2");
+                UIHandler.instance.DisplayTime(npc.displayTime);
+
+                if (!npc.talkedTo)
+                {
+                    npc.talkedTo = true;
+
+                    npcTalked += 1;
+
+                    // Se deja pasar a la siguiente zona solo cuando se hable con los NPCs necesarios
+                    if (npcTalked >= 2)
+                    {
+                        fog1Collider.enabled = false;
+                        fog2Collider.enabled = false;
+                    }
+                }
+            }
+        }
+
+        RaycastHit2D hit3 = Physics2D.Raycast(playerRb.position + Vector2.up, moveDirection, 1.5f, LayerMask.GetMask("Environment"));
+
+        if (hit3.collider != null)
+        {
+            NonPlayerCharacter fog = hit3.collider.GetComponent<NonPlayerCharacter>();
 
             if (fog != null)
             {
-                UIHandler.instance.DisplayDialogue(fog.dialogueText);
+                UIHandler.instance.DisplayDialogue(fog.dialogueText, "Environment");
                 UIHandler.instance.DisplayTime(fog.displayTime);
             }
         }

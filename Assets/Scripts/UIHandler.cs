@@ -10,6 +10,8 @@ public class UIHandler : MonoBehaviour
     private Label m_NPCLabel;
     private float m_TimerDisplay;
     private VisualElement m_Healthbar;
+    private VisualElement m_NPCFrogPortrait;
+    private VisualElement m_NPCDuckPortrait;
 
     // Variable utilizada para el tiempo que los diálogos están siendo mostrados
     //public float displayTime = 5.0f;
@@ -33,6 +35,8 @@ public class UIHandler : MonoBehaviour
         m_NPCDialogue = uiDocument.rootVisualElement.Q<VisualElement>("NPCDialogue");
         m_NPCDialogue.style.display = DisplayStyle.None;
         m_NPCLabel = m_NPCDialogue.Q<Label>("Label");
+        m_NPCFrogPortrait = m_NPCDialogue.Q<VisualElement>("NPCFrog");
+        m_NPCDuckPortrait = m_NPCDialogue.Q<VisualElement>("NPCDuck");
 
         m_TimerDisplay = -1.0f;
 
@@ -68,10 +72,27 @@ public class UIHandler : MonoBehaviour
     /// Función que controla la aparición de los diálogos
     /// </summary>
     /// <param name="dialogueText"></param>
-    public void DisplayDialogue(string dialogueText)
+    public void DisplayDialogue(string dialogueText, string npcLayer)
     {
         m_NPCLabel.text = dialogueText;
+        m_NPCLabel.style.paddingLeft = 230f;
         m_NPCDialogue.style.display = DisplayStyle.Flex;
+
+        m_NPCFrogPortrait.style.display = DisplayStyle.None;
+        m_NPCDuckPortrait.style.display = DisplayStyle.None;
+
+        if (npcLayer == "NPC")
+        {
+            m_NPCFrogPortrait.style.display = DisplayStyle.Flex;
+        }
+        else if (npcLayer == "NPC2")
+        {
+            m_NPCDuckPortrait.style.display = DisplayStyle.Flex;
+        }
+        else if (npcLayer == "Environment")
+        {
+            m_NPCLabel.style.paddingLeft = 45f;
+        }
     }
 
     public void DisplayTime(float displayTime)
