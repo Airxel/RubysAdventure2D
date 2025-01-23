@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HealthCollectible : MonoBehaviour
 {
+    public AudioClip collectibleClip;
+
     public int healthAmount = 1;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -13,6 +15,8 @@ public class HealthCollectible : MonoBehaviour
         if (controller != null && controller.health < controller.maxHealth)
         {
             controller.ChangeHealth(healthAmount);
+
+            controller.PlaySound(collectibleClip);
 
             Destroy(gameObject);
         }

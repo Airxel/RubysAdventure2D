@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    Animator animator;
+    private AudioSource audioSource;
+
+    private Animator animator;
 
     private Rigidbody2D enemyRb;
     public float speed = 3.0f;
@@ -25,6 +27,8 @@ public class EnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         enemyRb = GetComponent<Rigidbody2D>();
+
+        audioSource = GetComponent<AudioSource>();
 
         enemyMovementTimer = enemyVMovementTime;
     }
@@ -113,6 +117,7 @@ public class EnemyController : MonoBehaviour
         broken = false;
         enemyRb.simulated = false;
 
+        audioSource.Stop();
         animator.SetTrigger("Fixed");
     }
 }

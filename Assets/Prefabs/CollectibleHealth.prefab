@@ -143,3 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36897b2a2cce512439172fa17fb3ac77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleClip: {fileID: 8300000, guid: 173a14cf06354c643b46b235f2a4f974, type: 3}
+  healthAmount: 1

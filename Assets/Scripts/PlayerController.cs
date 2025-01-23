@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    Animator animator;
+    private AudioSource audioSource;
+
+    private Animator animator;
     Vector2 moveDirection = new Vector2(1, 0);
 
     // Variables referentes al movimiento del jugador
@@ -34,17 +36,21 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab;
     public float projectileForce = 300f;
 
+    public InputAction shootAction;
+
     public InputAction talkAction;
 
     private void Start()
     {
         moveAction.Enable();
-
+        shootAction.Enable();
         talkAction.Enable();
 
         animator = GetComponent<Animator>();
 
         playerRb = GetComponent<Rigidbody2D>();
+
+        audioSource = GetComponent<AudioSource>();
 
         currentHealth = maxHealth;
     }
@@ -84,12 +90,12 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (shootAction.triggered)
         {
             Launch();
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (talkAction.triggered)
         {
             FindFriend();
         }
@@ -156,5 +162,10 @@ public class PlayerController : MonoBehaviour
                 UIHandler.instance.DisplayDialogue(npc.dialogueText);
             }
         }
+    }
+
+    public void PlaySound (AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }

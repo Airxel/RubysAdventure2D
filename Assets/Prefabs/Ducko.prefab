@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -1717247499740559750}
   - component: {fileID: 3307508764571784493}
   - component: {fileID: 2574340328455974529}
+  - component: {fileID: 1851699923683809257}
   m_Layer: 10
   m_Name: Ducko
   m_TagString: Untagged
@@ -198,7 +199,7 @@ MonoBehaviour:
       m_Flags: 4
     - m_Name: up
       m_Id: 2b204ec5-2642-46ae-b171-3ff6bcc7e58d
-      m_Path: <Gamepad>/rightStick/up
+      m_Path: <Gamepad>/leftStick/up
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -206,7 +207,7 @@ MonoBehaviour:
       m_Flags: 8
     - m_Name: down
       m_Id: a10417ac-8452-40f0-9456-aa9a3e3d8525
-      m_Path: <Gamepad>/rightStick/down
+      m_Path: <Gamepad>/leftStick/down
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -214,7 +215,7 @@ MonoBehaviour:
       m_Flags: 8
     - m_Name: left
       m_Id: a3b1051e-8e89-4526-8ec8-61c62281ad5b
-      m_Path: <Gamepad>/rightStick/left
+      m_Path: <Gamepad>/leftStick/left
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -222,7 +223,7 @@ MonoBehaviour:
       m_Flags: 8
     - m_Name: right
       m_Id: a5f5a398-2b12-4bac-b1f7-11ca91b724c0
-      m_Path: <Gamepad>/rightStick/right
+      m_Path: <Gamepad>/leftStick/right
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -231,10 +232,35 @@ MonoBehaviour:
     m_Flags: 0
   speed: 5
   maxHealth: 5
-  timeInvincible: 2
+  timeInvincible: 1.5
   timeHealing: 5
   projectilePrefab: {fileID: 5677810301606676612, guid: 0c81ab677b0ef9840ab18ca627ca92de, type: 3}
   projectileForce: 300
+  shootAction:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a3df895b-fad8-4286-9934-2a06c166019a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 9840e3d7-1522-46c0-8e6e-e5418770fbbc
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shoot
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 1fe62142-0f51-449e-9dd4-86912494d5c1
+      m_Path: <Gamepad>/buttonNorth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shoot
+      m_Flags: 0
+    m_Flags: 0
   talkAction:
     m_Name: Talk
     m_Type: 0
@@ -246,6 +272,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: 03feb865-2cb9-4d51-93ff-5f7131d4e44b
       m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Talk
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 5bc64c57-8602-4a14-b3c9-f44fc90a9489
+      m_Path: <Gamepad>/buttonEast
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -335,3 +369,99 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &1851699923683809257
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554300302549857128}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
