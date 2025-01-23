@@ -4,39 +4,48 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    // Variables utilizadas para el sonido de los enemigos
     private AudioSource audioSource;
-
     public AudioClip enemyFixedClip;
 
+    // Variable utilizada para las animaciones de los enemigos
     private Animator animator;
 
+    // Variables utilizadas para el movimiento de los enemigos
     private Rigidbody2D enemyRb;
-    public float speed = 3.0f;
-
-    public bool vertical = true;
 
     public float enemyVMovementTime = 3.0f;
     public float enemyHMovementTime = 1.5f;
     private float enemyMovementTimer;
-    public int enemyDirection = 1;
 
+    public int enemyDirection = 1;
+    public float speed = 3.0f;
+    public bool vertical = true;
+
+    // Variable utilizada para saber el daño que hacen los enemigos
     public int enemyDamage = 1;
 
+    // Variable para saber si un enemigo está roto o no
     private bool broken = true;
 
+    // Variable utilizada para los efectos de los enemigos
     public ParticleSystem smokeEffect;
 
+    /// <summary>
+    /// Función para guardar las referencias de los elementos y establecer valores iniciales
+    /// </summary>
     private void Start()
     {
         animator = GetComponent<Animator>();
-
         enemyRb = GetComponent<Rigidbody2D>();
-
         audioSource = GetComponent<AudioSource>();
 
         enemyMovementTimer = enemyVMovementTime;
     }
 
+    /// <summary>
+    /// Función que controla el tiempo para el cambio de dirección de los enemigos
+    /// </summary>
     private void Update()
     {
         enemyMovementTimer -= Time.deltaTime;
@@ -47,6 +56,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Función que controla el movimiento de los enemigos
+    /// </summary>
     private void FixedUpdate()
     {
         if (!broken)
@@ -74,6 +86,10 @@ public class EnemyController : MonoBehaviour
         enemyRb.MovePosition(enemyPosition);
     }
 
+    /// <summary>
+    /// Función que controla la interacción de los enemigos con el jugador
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController player = other.gameObject.GetComponent<PlayerController>();
@@ -84,6 +100,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Función que controla el cambio de dirección, según la dirección anterior
+    /// </summary>
     private void RandomDirection()
     {
         if (vertical)
@@ -116,14 +135,17 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Función que controla si un enemigo se arregla
+    /// </summary>
     public void Fix()
     {
         broken = false;
         enemyRb.simulated = false;
 
-        audioSource.Stop();
         animator.SetTrigger("Fixed");
-        audioSource.PlayOneShot(enemyFixedClip);
         smokeEffect.Stop();
+        audioSource.Stop();
+        audioSource.PlayOneShot(enemyFixedClip); 
     }
 }

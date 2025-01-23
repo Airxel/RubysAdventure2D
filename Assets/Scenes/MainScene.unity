@@ -15017,7 +15017,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747c60046fd041249b4e79455ba4d01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: I think I should talk to both my neighbourgs first...
+  dialogueText: I think I should talk to both my neighborgs first...
+  displayTime: 3
   talkedTo: 0
 --- !u!1 &1505254960
 GameObject:
@@ -74017,7 +74018,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e8cb00566f82df74e873a4f9a4c0d78e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -75068,7 +75069,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c63019b91b31084fa173b786a0fc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayTime: 4
 --- !u!1001 &1960593098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76145,14 +76145,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ducko
       objectReference: {fileID: 0}
-    - target: {fileID: 1851699923683809257, guid: 83c15a96e867bab45bc405d918151f84, type: 3}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1851699923683809257, guid: 83c15a96e867bab45bc405d918151f84, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -76216,6 +76208,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4194332024760250579, guid: 02e1d41fe49d9474982430bb25c36bee, type: 3}
+      propertyPath: displayTime
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194332024760250579, guid: 02e1d41fe49d9474982430bb25c36bee, type: 3}
       propertyPath: dialogueText
       value: The madman did it, he released the robots. They've set up traps at the
         valley entrance, where I'm guessing they are. Ducko, I need you to check
@@ -76235,6 +76231,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 441132044}
     m_Modifications:
+    - target: {fileID: 2018740114735086395, guid: 13dd347e384bd1c45b25377a177d1f46, type: 3}
+      propertyPath: displayTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018740114735086395, guid: 13dd347e384bd1c45b25377a177d1f46, type: 3}
+      propertyPath: dialogueText
+      value: No, not even you can stop de robots, but you are welcome to try. I let
+        them loose in the valley. Don't dia, Ducko, HAHAHAHA!
+      objectReference: {fileID: 0}
     - target: {fileID: 2806901721305681798, guid: 13dd347e384bd1c45b25377a177d1f46, type: 3}
       propertyPath: m_Name
       value: NPC2

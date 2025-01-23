@@ -290,7 +290,8 @@ MonoBehaviour:
     m_Flags: 0
   playerHitEffect: {fileID: 6183003862219797125, guid: 28f8afc804b06af4f8448f60aa2396bf, type: 3}
   npcTalked: 0
-  fogCollider: {fileID: -3814836528216555459, guid: e8823e7b65b242242a869cf256142ace, type: 3}
+  fog1Collider: {fileID: 0}
+  fog2Collider: {fileID: 0}
 --- !u!50 &-1717247499740559750
 Rigidbody2D:
   serializedVersion: 4
@@ -386,8 +387,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.25
+  m_Pitch: 0.5
   Loop: 0
   Mute: 0
   Spatialize: 0
