@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveDirection = new Vector2(1, 0);
     public float speed = 5.0f;
 
+    public InputAction sprintAction;
+    public float sprint = 2.0f;
+
     // Variables utilizadas para el sistema de vidas del jugador
     public int health { get { return currentHealth; } }
     private int currentHealth;
@@ -57,6 +60,7 @@ public class PlayerController : MonoBehaviour
         moveAction.Enable();
         shootAction.Enable();
         talkAction.Enable();
+        sprintAction.Enable();
 
         animator = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
@@ -73,11 +77,10 @@ public class PlayerController : MonoBehaviour
         playerMovement = moveAction.ReadValue<Vector2>();
 
         // Si el jugador se está moviendo
-        if(!Mathf.Approximately(playerMovement.x, 0.0f) || !Mathf.Approximately(playerMovement.y, 0.0f))
+        if (!Mathf.Approximately(playerMovement.x, 0.0f) || !Mathf.Approximately(playerMovement.y, 0.0f))
         {
             moveDirection.Set(playerMovement.x, playerMovement.y);
             moveDirection.Normalize();
-            audioSource.Play();
         }
 
         animator.SetFloat("Look X", moveDirection.x);
@@ -120,7 +123,14 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        Vector2 playerPosition = (Vector2)playerRb.position + playerMovement * speed * Time.deltaTime;
+        float newSpeed = speed;
+
+        if (sprintAction.IsPressed())
+        {
+            newSpeed *= sprint;
+        }
+
+        Vector2 playerPosition = (Vector2)playerRb.position + playerMovement * newSpeed * Time.deltaTime;
 
         playerRb.MovePosition(playerPosition);
     }

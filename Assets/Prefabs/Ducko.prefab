@@ -233,11 +233,35 @@ MonoBehaviour:
       m_Flags: 8
     m_Flags: 0
   speed: 5
+  sprintAction:
+    m_Name: Sprint
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d02b027c-1dc2-4352-a6fa-b96804f2620e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: a5f70d1b-92f1-4b9e-814a-030f1e67e9b4
+      m_Path: <Keyboard>/leftShift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Sprint
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9eeb46f4-4ee8-415c-80ee-9a8e07abb8ac
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Sprint
+      m_Flags: 0
+    m_Flags: 0
+  sprint: 2
   maxHealth: 5
   timeInvincible: 1.5
   timeHealing: 5
-  projectilePrefab: {fileID: 5677810301606676612, guid: 0c81ab677b0ef9840ab18ca627ca92de, type: 3}
-  projectileForce: 300
   shootAction:
     m_Name: Shoot
     m_Type: 0
@@ -263,6 +287,8 @@ MonoBehaviour:
       m_Action: Shoot
       m_Flags: 0
     m_Flags: 0
+  projectilePrefab: {fileID: 5677810301606676612, guid: 0c81ab677b0ef9840ab18ca627ca92de, type: 3}
+  projectileForce: 300
   talkAction:
     m_Name: Talk
     m_Type: 0
@@ -288,10 +314,10 @@ MonoBehaviour:
       m_Action: Talk
       m_Flags: 0
     m_Flags: 0
-  playerHitEffect: {fileID: 6183003862219797125, guid: 28f8afc804b06af4f8448f60aa2396bf, type: 3}
   npcTalked: 0
   fog1Collider: {fileID: 0}
   fog2Collider: {fileID: 0}
+  playerHitEffect: {fileID: 6183003862219797125, guid: 28f8afc804b06af4f8448f60aa2396bf, type: 3}
 --- !u!50 &-1717247499740559750
 Rigidbody2D:
   serializedVersion: 4
