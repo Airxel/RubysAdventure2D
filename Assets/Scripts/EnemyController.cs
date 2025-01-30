@@ -31,6 +31,11 @@ public class EnemyController : MonoBehaviour
     // Variable utilizada para los efectos de los enemigos
     public ParticleSystem smokeEffect;
 
+    private void Awake()
+    {
+        EnemiesContainer.instance.AddEnemies();
+    }
+
     /// <summary>
     /// Función para guardar las referencias de los elementos y establecer valores iniciales
     /// </summary>
@@ -140,12 +145,14 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     public void Fix()
     {
+        EnemiesContainer.instance.RemoveEnemies();
+
         broken = false;
         enemyRb.simulated = false;
 
         animator.SetTrigger("Fixed");
         smokeEffect.Stop();
         audioSource.Stop();
-        audioSource.PlayOneShot(enemyFixedClip); 
+        audioSource.PlayOneShot(enemyFixedClip);
     }
 }

@@ -12,6 +12,8 @@ public class UIHandler : MonoBehaviour
     private VisualElement m_Healthbar;
     private VisualElement m_NPCFrogPortrait;
     private VisualElement m_NPCDuckPortrait;
+    private VisualElement m_EnemiesCounter;
+    private Label m_EnemiesCount;
 
     // Variable utilizada para el tiempo que los diálogos están siendo mostrados
     //public float displayTime = 5.0f;
@@ -37,6 +39,9 @@ public class UIHandler : MonoBehaviour
         m_NPCLabel = m_NPCDialogue.Q<Label>("Label");
         m_NPCFrogPortrait = m_NPCDialogue.Q<VisualElement>("NPCFrog");
         m_NPCDuckPortrait = m_NPCDialogue.Q<VisualElement>("NPCDuck");
+        m_EnemiesCounter = uiDocument.rootVisualElement.Q<VisualElement>("EnemiesCounter");
+        m_EnemiesCount = m_EnemiesCounter.Q<Label>("EnemiesCounter");
+        
 
         m_TimerDisplay = -1.0f;
 
@@ -98,5 +103,10 @@ public class UIHandler : MonoBehaviour
     public void DisplayTime(float displayTime)
     {
         m_TimerDisplay = displayTime;
+    }
+
+    public void DisplayEnemies(string enemiesCount)
+    {
+        m_EnemiesCount.text = enemiesCount;
     }
 }
