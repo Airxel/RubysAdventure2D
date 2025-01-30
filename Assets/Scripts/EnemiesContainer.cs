@@ -25,17 +25,24 @@ public class EnemiesContainer : MonoBehaviour
         remainingEnemies = totalEnemies;
     }
 
+    private void Update()
+    {
+        enemiesCount = (remainingEnemies.ToString() + " / " + totalEnemies.ToString());
+
+        UIHandler.instance.DisplayEnemies(enemiesCount);
+    }
+
     public void AddEnemies()
     {
         totalEnemies += 1;
 
-        Debug.Log("El total de enemigos es " +  totalEnemies);
+        //Debug.Log("El total de enemigos es " +  totalEnemies);
     }
 
     public void RemoveEnemies()
     {
         remainingEnemies -= 1;
 
-        Debug.Log("Quedan " + remainingEnemies + " enemigos");
+        //Debug.Log("Quedan " + remainingEnemies + " enemigos");
     }
 }
